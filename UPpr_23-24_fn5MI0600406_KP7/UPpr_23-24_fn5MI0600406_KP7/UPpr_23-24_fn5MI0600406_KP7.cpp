@@ -18,7 +18,6 @@
 #include <vector>
 
 #include <cstdlib>
-#include <ctime>
 
 using namespace std;
 
@@ -35,7 +34,7 @@ bool isValid(const string&, const string&);
 void tolower(string&);
 int submenu(void);
 
-int main(void) {
+int main() {
     
     int maxLetters = 10;
     int maxRounds = 10;
@@ -43,7 +42,7 @@ int main(void) {
     vector<string> words = load("words.txt");
 
     int selection = menu();
-    while (selection != 4) {
+    while (selection != 4) { // Thats the code for the menu: the options etc.
         switch (selection) {
         case 1:
             startGame(maxLetters, maxRounds,
@@ -86,7 +85,7 @@ int main(void) {
     return 0;
 }
 
-void save(const char* filename, const vector<string>& words) {
+void save(const char* filename, const vector<string>& words) { // The function is for writing the file...
     ofstream outFile(filename);
     if (outFile.is_open()) {
         for (const auto& word : words) {
@@ -100,7 +99,7 @@ void save(const char* filename, const vector<string>& words) {
     }
 }
 
-vector<string> load(const char* filename) {
+vector<string> load(const char* filename) { // This function is for reading the file...
     vector<string> words;
     ifstream inFile(filename);
     if (inFile.is_open()) {
@@ -112,14 +111,14 @@ vector<string> load(const char* filename) {
         cout << "The words were successfully read from the file." << endl;
     }
     else {
-        cerr << "The file cannot be opened for reading." << endl;
+       cout << "The file cannot be opened for reading." << endl;
     }
     return words;
 }
 
-vector<string> extractValidWords(const vector<string>& words, const int& maxLetters) {
+vector<string> extractValidWords(const vector<string>& words, const int& maxLetters) { 
     vector<string> filtered;
-    for (auto word : words) {
+    for (string word : words) {
         if (word.size() <= maxLetters) {
             filtered.push_back(word);
         }
@@ -127,16 +126,14 @@ vector<string> extractValidWords(const vector<string>& words, const int& maxLett
     return filtered;
 }
 
-void startGame(const int letters, const int rounds, const vector<string> words) {
+void startGame(const int letters, const int rounds, const vector<string> words) { // Here is the code for starting the game 
 
     int points = 0;
     int round = 0;
 
-    srand(time(nullptr));
-
     while (round < rounds) {
 
-        string word = words.at(rand() % words.size());
+        string word = words.at(rand() % words.size()); // Take a random word
         int missing = letters - word.size();
 
         string answer;
@@ -163,16 +160,16 @@ void startGame(const int letters, const int rounds, const vector<string> words) 
 
         points += answer.size();
         cout << "Your poinsts so far are: " << points << endl;
-        round++;
+        round++; // Adding points after guessed correctly!
 
     }
 
-    cout << "Your total points are: " << points << endl;
+    cout << "Your total points are: " << points << endl; // Message after finishing all rounds
     cout << "Returning to menu." << endl;
 
 }
 
-bool isValid(const string& word, const string& original) {
+bool isValid(const string& word, const string& original) { // Check if the word is valid 
 
     int alphabet[26] = { 0 };
     for (const char& letter : original) alphabet[letter - 'a']++;
@@ -187,7 +184,7 @@ bool isValid(const string& word, const string& original) {
     return true;
 }
 
-bool exists(const string& search, const vector<string>& words) {
+bool exists(const string& search, const vector<string>& words) { // Check if the word exists
     bool guessed = false;
     for (const string& word : words) {
         if (word == search) {
@@ -205,7 +202,7 @@ void printLetters(const string& word) {
     cout << endl;
 }
 
-void addWord(vector<string>& words) {
+void addWord(vector<string>& words) { // A code for optional adding new word
 
     bool isUnique;
     string newWord;
@@ -215,7 +212,7 @@ void addWord(vector<string>& words) {
 
     tolower(newWord);
 
-    isUnique = true;
+    isUnique = true; // Checking if the word is unique
     for (string word : words) {
         if (word == newWord) {
             isUnique = false;
@@ -244,7 +241,6 @@ void tolower(string& word) {
 void shuffleWord(string& word) {
 
     int length = word.size();
-    srand(time(0));
 
     for (int i = 0; i < length - 1; i++) {
         int randomIndex = i + rand() % (length - i);
@@ -253,7 +249,7 @@ void shuffleWord(string& word) {
 
 }
 
-int menu(void) {
+int menu(void) { // This is the code for how the menu looks visually.
 
     int selection;
 
@@ -268,12 +264,12 @@ int menu(void) {
 
 }
 
-int submenu(void) {
+int submenu(void) { // And submenu in case we choose option 2: Settings.
 
     int selection;
 
-    cout << "1. Change the submitted letters" << endl;
-    cout << "2. Change the numbers of rounds" << endl;
+    cout << "1. Change the submitted letters." << endl;
+    cout << "2. Change the numbers of rounds." << endl;
 
     cin >> selection;
     return selection;
