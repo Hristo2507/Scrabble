@@ -18,7 +18,7 @@
 #include <vector>
 
 #include <cstdlib>
-
+#include <ctime>
 using namespace std;
 
 int menu(void);
@@ -131,6 +131,8 @@ void startGame(const int letters, const int rounds, const vector<string> words) 
     int points = 0;
     int round = 0;
 
+    srand(time(nullptr));
+
     while (round < rounds) {
 
         string word = words.at(rand() % words.size()); // Take a random word
@@ -241,6 +243,7 @@ void tolower(string& word) {
 void shuffleWord(string& word) {
 
     int length = word.size();
+    srand(time(0));
 
     for (int i = 0; i < length - 1; i++) {
         int randomIndex = i + rand() % (length - i);
