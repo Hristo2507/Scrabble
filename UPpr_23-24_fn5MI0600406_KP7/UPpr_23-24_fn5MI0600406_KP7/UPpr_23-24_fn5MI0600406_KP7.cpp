@@ -36,7 +36,7 @@ void tolower(string&);
 int submenu(void);
 
 int main(void) {
-    system("chcp 1251>0"); // -> Display Cyrillic text
+    
     int maxLetters = 10;
     int maxRounds = 10;
 
@@ -257,11 +257,11 @@ int menu(void) {
 
     int selection;
 
-    cout << "Меню:" << endl;
-    cout << "1. Стартиране на нова игра" << endl;
-    cout << "2. Настройки" << endl;
-    cout << "3. Въвеждне на нова дума" << endl;
-    cout << "4. Изход" << endl;
+    cout << "Menu:" << endl;
+    cout << "1. Start new game." << endl;
+    cout << "2. Settings." << endl;
+    cout << "3. Enter a new word." << endl;
+    cout << "4. Exit." << endl;
 
     cin >> selection;
     return selection;
@@ -272,8 +272,8 @@ int submenu(void) {
 
     int selection;
 
-    cout << "1. Променяне на броя на подаваните букви" << endl;
-    cout << "2. Променяне на броя рундове" << endl;
+    cout << "1. Change the submitted letters" << endl;
+    cout << "2. Change the numbers of rounds" << endl;
 
     cin >> selection;
     return selection;
