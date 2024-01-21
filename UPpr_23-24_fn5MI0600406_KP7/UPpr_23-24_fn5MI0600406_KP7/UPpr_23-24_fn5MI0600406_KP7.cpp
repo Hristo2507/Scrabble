@@ -210,7 +210,7 @@ void addWord(vector<string>& words) {
     bool isUnique;
     string newWord;
 
-    cout << "Нова дума: ";
+    cout << "New word: ";
     cin >> newWord;
 
     tolower(newWord);
@@ -225,10 +225,10 @@ void addWord(vector<string>& words) {
 
     if (isUnique) {
         words.push_back(newWord);
-        cout << "Думата е добавена успешно." << endl;
+        cout << "The word is added succesfully." << endl;
     }
     else {
-        cout << "Думата е вече в речника." << endl;
+        cout << "The word is already in dictionary." << endl;
     }
 
 }
